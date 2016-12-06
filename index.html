@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>New Software</title>
+    
+    <link rel='stylesheet prefetch' href='dist/css/jquery-ui.css'>
+
+    <link rel="stylesheet" href="dist/css/style.css">
+    
+  </head>
+
+  <body>
+
+<div class='login'>
+  <div class='login_title'>
+    <span>Login to your account</span>
+  </div>
+  <div class='login_fields'>
+    <div class='login_fields__user'>
+      <div class='icon'>
+        <img src='dist/images/user_icon_copy.png'>
+      </div>
+      <input placeholder='Username' type='text' name='user' id='user'>
+        <div class='validation'>
+          <img src='dist/images/tick.png'>
+        </div>
+      </input>
+    </div>
+    <div class='login_fields__password'>
+      <div class='icon'>
+        <img src='dist/images/lock_icon_copy.png'>
+      </div>
+      <input placeholder='Password' type='password' name='pass' id='pass'>
+      <div class='validation'>
+        <img src='dist/images/tick.png'>
+      </div>
+    </div>
+    <div class='login_fields__submit'>
+      <input type='submit' value='Log In'>
+
+    </div>
+  </div>
+  <div class='success'>
+    <h2>Authentication Success</h2>
+    <p>Welcome back</p>
+  </div>
+  <div class='nosuccess'>
+    <h2>Authentication Fail</h2>
+    <p><a href="index.html">Please try again!</a></p>
+  </div>    
+  <div class='disclaimer'>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper laoreet placerat. Nullam semper auctor justo, rutrum posuere odio vulputate nec.</p>
+  </div>
+</div>
+<div class='authent'>
+    <img src='dist/images/puff.svg'>
+  <p>Authenticating...</p>
+</div>
+
+    <script src='dist/js/jquery.min.js'></script>
+    <script src='dist/js/jquery-ui.min.js'></script>
+    <script src="dist/js/index.js"></script>
+
+    
+    
+  </body>
+</html>
