@@ -107,7 +107,9 @@
                     </ul>
                   </li>
                  ';
+
     require 'profile_nav.php';
+
     echo '
                   <!-- Control Sidebar Toggle Button -->
                   <li>
