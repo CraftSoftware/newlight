@@ -1,5 +1,5 @@
 <?php
-    $folder = "/"."new" . "/";
+    $folder = "/"."newlight" . "/";
     echo '
         <head>
           <meta charset="utf-8">
