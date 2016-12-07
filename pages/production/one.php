@@ -4,6 +4,9 @@
   require 'head.php';  
 ?>
 <body class="hold-transition skin-blue sidebar-mini">
+    <?php
+        if($security!="false"){
+    ?>
 <!-- Site wrapper -->
 <div class="wrapper">
 
@@ -21,7 +24,7 @@
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>Alexander Pierce</p>    
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -260,13 +263,9 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.8
-    </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer>
+  <?php
+    require 'footer.php';
+  ?>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -464,7 +463,14 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
+<?php
+        }else{
+            echo '<script>
+                    alert("Usuario no registrado!");
+                    window.location.replace("../../index.html");
+                  </script>';
+        }
+?>
 <!-- jQuery 2.2.3 -->
 <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -477,5 +483,6 @@
 <script src="../../dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<script src="../../dist/js/one.js"></script>
 </body>
 </html>

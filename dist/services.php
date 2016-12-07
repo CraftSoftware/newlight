@@ -14,6 +14,9 @@ if (isset($_POST['option']))
         case 'know_messages':
             phpknow_messages();
             break;
+        case 'log_out':
+            phplog_out();
+            break;
        
     }
 }
@@ -24,7 +27,7 @@ function phplog_in(){
     $pass = md5($_POST['pass']);
     
 	$query = "";
-	$query .= "SELECT id_user,name,pass,position ";
+	$query .= "SELECT id_user,name,pass,position,email ";
 	$query .= "FROM users ";
 	$query .= "WHERE email = '$user' AND ";
     $query .= "pass = '$pass' ";
@@ -37,6 +40,7 @@ function phplog_in(){
 		$response['message'] = 'todook';
         $_SESSION['user_name'] = $r['name'];
         $_SESSION['user_position'] = $r['position'];
+        $_SESSION['user_email'] = $r['email'];
         
 	}else{
 		$response['message'] = 'notodook';
@@ -54,7 +58,7 @@ function phpknow_messages(){
 	$query .= "SELECT count(status) as sum_messages ";
 	$query .= "FROM `messeges` ";
 	$query .= "WHERE status = 0 and ";
-    $query .= "to_ = 'admin@gmail.com' ";
+    $query .= "to_ = '".$_SESSION['user_email']."' ";
 
 
 	$query = mysql_query($query);
@@ -71,6 +75,14 @@ function phpknow_messages(){
         $_SESSION['count_message'] = 0;
 	}
  
+}
+
+function phplog_out(){
+    
+    session_destroy();
+    $response['message'] = 'todook';
+	echo(json_encode($response));
+    
 }
 
 
