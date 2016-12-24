@@ -20,7 +20,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Paso #1
+        Paso #10
         <small>Todo comienza aca!</small>
       </h1>
         <!--
