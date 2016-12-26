@@ -3,6 +3,8 @@
     require 'ini.php';
 
     echo '
+        
+        <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
     
           <header class="main-header">
             <!-- Logo -->
@@ -113,11 +115,26 @@
     echo '
                   <!-- Control Sidebar Toggle Button -->
                   <li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    <a href="#" data-toggle="control-sidebar" class="barra_derecha"><i class="fa fa-gears"></i></a>
                   </li>
                 </ul>
               </div>
             </nav>
           </header>
          ';
+
+function no_barra(){
+    echo '
+        <script>
+                //alert("No barra!");
+                $( ".messages-menu" ).fadeOut( "slow" );
+                $( ".notifications-menu" ).fadeOut( "slow" );
+                $( ".tasks-menu" ).fadeOut( "slow" ); 
+                $( "#btn_profile" ).fadeOut( "slow" );
+                $( ".barra_derecha" ).fadeOut( "slow" );
+        </script>
+    ';
+}
+    
+
 ?>

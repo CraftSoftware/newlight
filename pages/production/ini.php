@@ -7,7 +7,8 @@
     $user_position  = $_SESSION['user_position'];
     $user_email     = $_SESSION['user_email'];
     $count_messages = $_SESSION['count_message'];
-    if ($user_position !=""){
+
+    if ($user_email !=""){
         $security = "true";
     }else{
         $security = "false";

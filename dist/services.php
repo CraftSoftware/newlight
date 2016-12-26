@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0);
 require 'connection.php';
 
 if (isset($_POST['option']))
@@ -17,7 +18,9 @@ if (isset($_POST['option']))
         case 'log_out':
             phplog_out();
             break;
-       
+       case 'register':
+            phpregister();
+            break;
     }
 }
 
@@ -83,6 +86,63 @@ function phplog_out(){
     $response['message'] = 'todook';
 	echo(json_encode($response));
     
+}
+
+
+function phpregister(){
+    
+    //Recibo los valores del JS y los guardo en sus respectivas variables
+    
+    $email  = $_POST["email"];
+    $admin  = $_POST["admin_name"];
+    $pass1  = md5($_POST["pass1"]);
+    $pass2  = md5($_POST["pass2"]);
+    
+    $response['message'] = 'todook';
+    $response['error']   = "";
+    
+    if($pass1!=$pass2){
+        $response['message']    = 'notodook';
+        $response['error']      = 'Las contrasenias no coinciden!' ;
+    }
+    
+    //Chequeo si el usuario ya existe.
+    
+    $query   =  "SELECT count(email) as sum_emails ";
+    $query  .=  "FROM `users` WHERE email like '$email'";
+    
+    $query = mysql_query($query);
+    $r     = mysql_fetch_array($query);
+    
+    if($r['sum_emails']>0){
+        $response['message']    = 'notodook';
+        $response['error']      = 'Ya existe una cuenta con ese email!' ;
+    }
+    
+    if($email == ""){
+        $response['message']    = 'notodook';
+        $response['error']      = 'Ingresar un email valido!' ;
+    }
+    
+    if($admin == ""){
+        $response['message']    = 'notodook';
+        $response['error']      = 'El nombre del administrador no puede quedar en blanco!' ;
+    }
+    
+    if($pass1 == "" || $pass2 ==""){
+        $response['message']    = 'notodook';
+        $response['error']      = 'Las contrasenias no pueden estar en blanco' ;
+    }
+    
+    if($response['message'] == "todook"){
+        $ins_query  = "INSERT INTO `users` ";
+        $ins_query .= "(`id_user`, `name`, `pass`, `img`, `position`, `email`) ";
+        $ins_query .= "VALUES ('', '$admin', '$pass1', '', '', '$email');";
+        
+        $ins_query = mysql_query($ins_query);
+    }
+	echo(json_encode($response));
+ 
 }
 
 

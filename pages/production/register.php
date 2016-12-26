@@ -4,57 +4,63 @@
   require 'head.php';  
 ?>
 <body class="hold-transition skin-blue sidebar-mini">
-    <?php
-        if($security!="false"){
-    ?>
+ 
 <!-- Site wrapper -->
 <div class="wrapper">
 
 <?php
     require 'header.php';
     require 'side_bar.php';
+    no_barra();
 ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Paso #1
-        <small>Todo comienza aca!</small>
-      </h1>
-        <!--
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
-      </ol>
-        -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-
-      <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
-          <h3 class="box-title">Ingresa el nombre de tu empresa</h3>
-
-        </div>
-        <div class="box-body">
-          <div class="input-group input-group-sm">
-                <input type="text" class="form-control">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-info btn-flat" id="step1">Continuar</button>
-                </span>
+      <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Registro</h3>
             </div>
-        </div>
-        <!-- /.box-body -->
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal">
+              <div class="box-body">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" >Email</label>
+                  <div class="col-sm-10">
+                    <input type="email" class="form-control" id="register_email" placeholder="Email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" >Admin Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="register_admin_name" placeholder="Admin name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Password</label>
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" id="register_pass" placeholder="Password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Confirm Password</label>
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" id="register_confirm_pass" placeholder="Confirm password">
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                    <div class="btn btn-default" id="btn_register_cancel">
+                        Cancel
+                    </div>  
+                    <div class="btn btn-info pull-right" id="btn_register_register">
+                        Register
+                    </div>
+              </div>
+              <!-- /.box-footer -->
+            </form>
       </div>
-      <!-- /.box -->
-
-    </section>
-    <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
@@ -258,16 +264,6 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-<?php
-        }else{
-            echo '<script>
-                    alert("Usuario no registrado!");
-                    window.location.replace("../../index.html");
-                  </script>';
-        }
-?>
-<!-- jQuery 2.2.3 -->
-<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="../../bootstrap/js/bootstrap.min.js"></script>
 <!-- SlimScroll -->
@@ -278,6 +274,6 @@
 <script src="../../dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<script src="../../dist/js/one.js"></script>
+<script src="../../dist/js/register.js"></script>
 </body>
 </html>

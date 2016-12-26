@@ -1,15 +1,16 @@
 $(function() {
-    
-        
+       
     
 });
 
-
+//**************FORM: profile_nav.php***********
 $('#btn_sign_out').click(function(){
     //alert('funciona!');
     logout();
 });
 
+
+//**************FORM: one.php*******************
 $('#step1').click(function(){
     alert('felicitaciones!');
 });
