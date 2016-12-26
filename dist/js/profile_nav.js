@@ -3,19 +3,12 @@ $(function() {
     
 });
 
-
-
-//**************FORM: one.php*******************
-$('#step1').click(function(){
-    //alert('felicitaciones!');
-
-    $(".step1").fadeOut("1000");
-
-    setTimeout(function(){
-        $(".step2").fadeIn("1000");
-    },700);
-    
+//**************FORM: profile_nav.php***********
+$('#btn_sign_out').click(function(){
+    //alert('funciona!');
+    logout();
 });
+
 
 
 function logout() {

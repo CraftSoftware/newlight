@@ -275,5 +275,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <script src="../../dist/js/register.js"></script>
+<script src="../../dist/js/profile_nav.js"></script>
 </body>
 </html>
