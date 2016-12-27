@@ -9,6 +9,9 @@ $('#btn_sign_out').click(function(){
     logout();
 });
 
+$('#btn_profile').click(function(){
+    window.location.replace("config_profile.php");
+});
 
 
 function logout() {
