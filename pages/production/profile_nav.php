@@ -34,7 +34,7 @@
                       <!-- Menu Footer-->
                       <li class="user-footer">
                         <div class="pull-left">
-                          <a href="#" class="btn btn-default btn-flat" id="btn_profile">Profile</a>
+                          <a href="config_profile.php" class="btn btn-default btn-flat" id="btn_profile">Profile</a>
                         </div>
                         <div class="pull-right btn btn-default btn-flat" id="btn_sign_out">
                           Sign out
