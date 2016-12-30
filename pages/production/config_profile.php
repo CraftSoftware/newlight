@@ -13,6 +13,7 @@
 <?php
     require 'header.php';
     require 'side_bar.php';
+    require '../../dist/connection.php';
 ?>
 
   <!-- PASO #1 -->
@@ -36,19 +37,22 @@
     <section class="content">
       <!-- Default box -->
       <div class="box">
-        <br><br><br>
+        <br>
           <center>
               
               
             
-            <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <!--  <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">-->
                 
               
-            <h3> Usuario <?php echo $user_name; ?></h3>
+            
           
               
               <!--verificamos la subida de imagen con php-->
                             <?php
+                                
+                                $pass   =   $_POST['password'];
+                                $mail    =   $_POST['email'];
                                 $actualizar = $_REQUEST['actualizar'];
                                 $error = false;
                                 //array de archivos disponibles
@@ -89,33 +93,49 @@
                         if (isset($actualizar) && $error==false)
                         {
                              
-                            
-                            $actualiza= mysql_query("UPDATE users SET img='$nombre_nuevo' WHERE name='$user_name'");
+                            if($mail!="" && $pass!="" ){
+                            $actualiza= mysql_query("UPDATE `users` SET `img`='$nombre_nuevo', `pass`= md5('$pass'), `email`='$mail' WHERE `name`='$user_name'");
                             $resultado = mysql_fetch_array($actualiza);
                             $mover_archivos = move_uploaded_file($imagen , $nombre_nuevo_con_carpeta);
+                             }else{
+                                
+                                $actualiza= mysql_query("UPDATE `users` SET `img`='$nombre_nuevo' WHERE `name`='$user_name'");
+                            $resultado = mysql_fetch_array($actualiza);
+                            $mover_archivos = move_uploaded_file($imagen , $nombre_nuevo_con_carpeta);
+                            }
+                            
                              
-                            $_SESSION['MM_Foto_user'] = NULL;
-                            unset($_SESSION['MM_Foto_user']);
-                             
-                            $select_foto = mysql_query("SELECT img FROM users WHERE id_user='$id'");
+                            $select_foto = mysql_query("SELECT `img`, `name` FROM `users` WHERE name='$user_name'");
                             $res_foto = mysql_fetch_array($select_foto);
-                            $ses = $res_foto->fetch_assoc();
-                            $_SESSION['MM_Foto_user'] = $ses['img'];
+                            
+                            $f_perfil = $res_foto['img'];
                              
                             //echo "<img src='" . $carpeta . $nombre_nuevo . "' alt='' width='100' height='100' />";
                             //echo "<br/>";
+                            echo'<img style="width:40%; margin-top:10px;" src="../../dist/img/'.$f_perfil.'" alt="'.$user_name.'"/><br><br>';
                             echo "Se le asignó nuevo Nombre de imagen  :  " . $nombre_nuevo;
-                            echo'<img style="width:40%; margin-top:10px;" src="user/'.$_SESSION['MM_Foto_user'].'" alt="'.$_SESSION['MM_Nick_user'].'"/>';
+                            
                              
                         }
                           else
                             {
                             ?>
-                          <img id="thumbnil" style="width:40%; margin-top:10px;"/>
+                          
                           <br/>
                           <!--formulario de envío -->
                           <form action="" name="actualizar" enctype="multipart/form-data" method="post">
                           <div class="escogerFoto">
+                              <h3> Usuario <?php echo $user_name; ?></h3>
+                            <?php
+                              
+                              $query_photo  =   mysql_query("SELECT `img`, `name` FROM `users` WHERE name='$user_name'");
+                              $rphoto       =   mysql_fetch_array($query_photo);
+                              
+                              $photo    =   $rphoto['img'];
+                              
+                              echo'<img style="width:20%; margin-top:10px;" src="../../dist/img/'.$photo.'" alt="'.$user_name.'"/><br><br>';
+                              ?>
+                            <img id="thumbnil" style="width:20%; margin-top:10px;"/><br>
                            <span> Escoja su Imagen </span>
                           <input class="escoger" type="file" accept="image/*"  onchange="showMyImage(this)"  name="imagen"
                              <?PHP
@@ -129,13 +149,18 @@
                                     print ("<BR><SPAN CLASS='error'>" . @$errores["imagen"] . "</SPAN>");
                               ?>
                            </div>
+                              <br>
+                          
+                              <input type="text" id="email" name="email" placeholder="Cambiar Correo" > <br><br>
+                              <input type="password" id="password" name="password" placeholder="Cambiar Contraseña" > <br><br>
+                          
+                              
                           <input class="enviar-foto" type="submit" value="actualizar" name="actualizar"/>
                           </form>
                           <?PHP
                             }?>
+           
           
-          <label>Correo</label><br>
-          <label>Password</label>
           </center>
           
           
@@ -153,7 +178,7 @@
     <!-- Main content -->
     
     <!-- /.content -->
-      </div>
+      
   </div>
   <!-- TERMINA PASO #1 -->
   <?php
