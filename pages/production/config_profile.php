@@ -13,7 +13,7 @@
 <?php
     require 'header.php';
     require 'side_bar.php';
-    require '../../dist/connection.php';
+    require '../../dist/connection.php'; //NOTA: Esto no debe de ir aca, puesto que toda cosa que querras consultar es atravez de JS que manda a llamar al services.php para hacer cualquier consulta vale, verificate bien eso porfa, asi el unico archivo de todo el sistema que tiene acceso a la base de datos sera el services.php
 ?>
 
   <!-- PASO #1 -->
@@ -72,7 +72,7 @@
                                 //nombre nuevo con la carpeta
                                 $nombre_nuevo_con_carpeta = $carpeta.$nombre_nuevo;
  
-                             if (isset($actualizar))
+                             if (isset($actualizar)) //NOTA: Buenisimo que utilices isset :D me parece benito
                              {//ingreso datos
                                       if(!in_array($extension, $archivos_disp_ar))
                                       {
