@@ -126,6 +126,7 @@
                           <form action="" name="actualizar" enctype="multipart/form-data" method="post">
                           <div class="escogerFoto">
                               <h3> Usuario <?php echo $user_name; ?></h3>
+                              
                             <?php
                               
                               $query_photo  =   mysql_query("SELECT `img`, `name` FROM `users` WHERE name='$user_name'");
@@ -133,10 +134,12 @@
                               
                               $photo    =   $rphoto['img'];
                               
-                              echo'<img style="width:20%; margin-top:10px;" src="../../dist/img/'.$photo.'" alt="'.$user_name.'"/><br><br>';
+                              echo'<img style=" width:20%; margin-top:10px; border-radius: 50%;" src="../../dist/img/'.$photo.'" alt="'.$user_name.'"/><br><br>';
                               ?>
-                            <img id="thumbnil" style="width:20%; margin-top:10px;"/><br>
+                              <div id="cropContainerModal"></div>
+                           <!-- <img id="thumbnil" style="width:20%; margin-top:10px;"/><br>
                            <span> Escoja su Imagen </span>
+                              
                           <input class="escoger" type="file" accept="image/*"  onchange="showMyImage(this)"  name="imagen"
                              <?PHP
                                  if (isset($actualizar))
@@ -147,7 +150,7 @@
                                  if (@$errores["imagen"] != "")
                                     //mostramos errores si los hay
                                     print ("<BR><SPAN CLASS='error'>" . @$errores["imagen"] . "</SPAN>");
-                              ?>
+                              ?>-->
                            </div>
                               <br>
                           
@@ -163,7 +166,7 @@
           
           </center>
           
-          
+         
           
           
         <!-- /.box-body -->
@@ -194,9 +197,52 @@
                   </script>';
         }
 ?>
-<!-- importo todos los JS que sean necesarios --!>
+<!-- importo todos los JS que sean necesarios -->
 <?php
     require 'import_js.php';
 ?>
+     <script>
+              
+		var croppicHeaderOptions = {
+				//uploadUrl:'img_save_to_file.php',
+				cropData:{
+					"dummyData":1,
+					"dummyData2":"asdas"
+				},
+				cropUrl:'img_crop_to_file.php',
+				customUploadButtonId:'cropContainerHeaderButton',
+				modal:false,
+				processInline:true,
+				loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
+				onBeforeImgUpload: function(){ console.log('onBeforeImgUpload') },
+				onAfterImgUpload: function(){ console.log('onAfterImgUpload') },
+				onImgDrag: function(){ console.log('onImgDrag') },
+				onImgZoom: function(){ console.log('onImgZoom') },
+				onBeforeImgCrop: function(){ console.log('onBeforeImgCrop') },
+				onAfterImgCrop:function(){ console.log('onAfterImgCrop') },
+				onReset:function(){ console.log('onReset') },
+				onError:function(errormessage){ console.log('onError:'+errormessage) }
+		}	
+		var croppic = new Croppic('croppic', croppicHeaderOptions);
+		
+		
+		var croppicContainerModalOptions = {
+				uploadUrl:'img_save_to_file.php',
+				cropUrl:'img_crop_to_file.php',
+				modal:true,
+				imgEyecandyOpacity:0.4,
+				loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
+				onBeforeImgUpload: function(){ console.log('onBeforeImgUpload') },
+				onAfterImgUpload: function(){ console.log('onAfterImgUpload') },
+				onImgDrag: function(){ console.log('onImgDrag') },
+				onImgZoom: function(){ console.log('onImgZoom') },
+				onBeforeImgCrop: function(){ console.log('onBeforeImgCrop') },
+				onAfterImgCrop:function(){ console.log('onAfterImgCrop') },
+				onReset:function(){ console.log('onReset') },
+				onError:function(errormessage){ console.log('onError:'+errormessage) }
+		}
+		var cropContainerModal = new Croppic('cropContainerModal', croppicContainerModalOptions);
+		
+              </script>
 </body>
 </html>

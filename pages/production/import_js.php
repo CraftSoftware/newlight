@@ -14,5 +14,6 @@
         <script src="../../dist/js/demo.js"></script>
         <script src="../../dist/js/one.js"></script>
         <script src="../../dist/js/profile_nav.js"></script>
+        <script src="../../dist/js/croppic.js"></script>
     ';
 ?>
